@@ -11,6 +11,7 @@
 |
 */
 
+/* This Route to searhc records for testing purpose */
 Route::get('/test', 'TestController@testsearch');
 
 Route::get('/sum', 'TestController@sum' );
@@ -53,7 +54,7 @@ Route::get('/SearchStudentList', 'StudentController@SearchStudentList');
 /* Thes Routes are used for User Registration and Authentication */
 /* This Route is used for View Laravel Home Page*/
 Route::get('/', function () {
-return view('welcome');
+    return view('welcome');
 });
 
 /* This Route is used for Load User Registration Form view */
@@ -71,7 +72,22 @@ Route::get('/login', function(){
 
 Route::post('/login', 'LoginController@UserLogin');
 
+/*This Route is use just after user login */
+Route::get('/homepage', function() {
+     return view('HomePage');
+});
 
+/* This Route is used for Logut Button and rederect to Login Page */
+Route::get('/logout', function(){
+    //session_destroy();
+    return view('GetLoginPage');
+});
+
+/* This Route is used for set User Password after click on email link */
+Route::get('/setpassword',function(){
+    return view('SetPassword');
+});
+Route::post('/setpassword', 'LoginController@SetPassword');
 
 
 

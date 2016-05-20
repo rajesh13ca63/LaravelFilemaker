@@ -9,6 +9,7 @@
 *-----------------------------------------------------------------------------------*/
 namespace App\Http\Controllers;
 
+use Mail;
 use Validater;
 use App\Login;
 use Illuminate\Http\Request;
@@ -21,17 +22,26 @@ class LoginController extends Controller
     /* This Method is used for New User Registration */
     public function NewUserRegistration(Request $request)
     {
+        $email = $request->input('email');
+        $name = $request->input('name');
+        $link = str_random(15);
+        
         $this->validate($request, [
         'name' => 'required',
         'email' => 'required',
-        'password' => 'required',
-        'password_confirmation' => 'required'
+        'post' => 'required',
+        'usertype' => 'required'
         ]);
         
         $user = new Login();
-        $user->UserRegistration($request);
+        $user->UserRegistration($request, $link);
+               
+        Mail::send('mail', ['user' => $name, 'link' => $link], function ($message) use ($email) {
+            $message->from($email, 'Your Registration ');
+            $message->to($email, $email)->subject('Your Registration successfull');
+        });
         
-        return redirect('/')->with('Success', 'You have successfully register');
+        return redirect('/GetUserRegistration')->with('Success', 'You have successfully register');
     }
     
     /* This Method is Used for New User Registration */
@@ -44,11 +54,18 @@ class LoginController extends Controller
         
         $user = new Login();
         $res = $user->UserLogin($request);
-       
+        
+        session(['key' => 'rajesh']);
+        
         if($res) {
-           return redirect('/allstudent');
+           return redirect('/homepage');
         } else {
             return redirect('/login')->with('error', 'Invalid Email Id / password ! Try again');
         }
+    }
+    
+    /* This Method is used for set password */
+    public function SetPassword(Request $request) {
+        echo "hi";
     }
 }

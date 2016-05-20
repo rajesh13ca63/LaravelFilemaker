@@ -20,12 +20,14 @@ class Login extends Model
     protected $primaryKey = 'UserId_pkn';
     
     /* This Method is used for create New user registstration records */
-    public function UserRegistration($request) {
+    public function UserRegistration($request, $link) {
         
         $user = new Login();
         $user->Name_xt = $request['name'];
         $user->EmailId_xt = $request['email'];
-        $user->Password_xt = MD5($request['password']);
+        $user->Post_xt = $request['post'];
+        $user->Role_xt = $request['usertype'];
+        $user->Link_xt = $link;
       
         $user->save();
     }

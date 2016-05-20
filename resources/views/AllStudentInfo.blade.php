@@ -1,4 +1,4 @@
-<!--
+<!------------------------------------------------
 /**
 *File name: StudentRegistration.
 *File type: php.
@@ -6,7 +6,7 @@
 *Author: Rajesh Gupta
 *Purpose: this php file is used for Show gridList student records.
 *Path:E:\xampp\htdocs\filemaker.
-**/-->
+**/------------------------------------------------->
 
 <!DOCTYPE html>
 <html lang="en">

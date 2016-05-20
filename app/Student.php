@@ -81,6 +81,9 @@ class Student extends Model
     /*This Method is used for show all records of student in bootgrid */
     public function ShowAllStudentRecords($request, $order_by_column, $order_by_value)
     {
+        $studenttotal = Student::wStudentTotal_cn;
+        dd($studenttotal);exit;        
+                        
         $current = $request['current'];
         $row = $request['rowCount'];
        
@@ -88,6 +91,7 @@ class Student extends Model
         $results = Student::orderBy($order_by_column, $order_by_value)
                             //->skip($current)->limit($row)->get();
                            ->get();
+       
         foreach($results as $result ) {
         $response[] = $result['attributes'];
         $i++;

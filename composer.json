@@ -7,7 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "mindfire/filemaker_laravel": "*"
+        "mindfire/filemaker_laravel": "*",
+        "laravel/socialite": "^2.0",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -20,6 +22,7 @@
         "classmap": [
             "database",
             "vendor/mindfire/filemakerapi/FileMaker.php"
+           
         ],
         "psr-4": {
             "App\\": "app/"
